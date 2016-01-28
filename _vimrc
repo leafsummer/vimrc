@@ -1,9 +1,3 @@
-" -----------------  Author: Ruchee
-" -----------------   Email: my@ruchee.com
-" -----------------    Date: 2016-01-25 09:58:41
-" -----------------   https://github.com/ruchee/vimrc
-
-
 " ---------- Ctrl系按键 ----------
 "
 " Ctrl + H                   --光标移当前行行首       [插入模式]
@@ -253,7 +247,7 @@ au BufRead,BufNewFile *.ini      setlocal ft=dosini
 " 设置着色模式和字体
 if g:isWIN
     colorscheme molokai
-    set guifont=Monaco:h11
+    set guifont=Monaco:h10
 elseif g:isMAC
     colorscheme molokai
     set guifont=Monaco:h14
@@ -267,7 +261,7 @@ set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
 set ai!                      " 设置自动缩进
 set smartindent              " 智能自动缩进
-set relativenumber           " 开启相对行号
+"set relativenumber           " 开启相对行号
 set nu!                      " 显示行号
 set ruler                    " 右下角显示光标位置的状态行
 set incsearch                " 开启实时搜索功能
@@ -315,7 +309,7 @@ if g:isGUI
         au GUIEnter * simalt ~x
     endif
     "winpos 20 20            " 指定窗口出现的位置，坐标原点在屏幕左上角
-    "set lines=20 columns=90 " 指定窗口大小，lines为高度，columns为宽度
+    "set lines=20 columns=120 " 指定窗口大小，lines为高度，columns为宽度
     set guioptions+=c        " 使用字符提示框
     set guioptions-=m        " 隐藏菜单栏
     set guioptions-=T        " 隐藏工具栏
@@ -342,6 +336,17 @@ endif
 au FileType scheme,racket,newlisp,lisp,clojure :inoremap ' '
 au FileType scheme,racket,newlisp,lisp,clojure :inoremap ` `
 au FileType scheme,racket,newlisp,lisp,clojure :inoremap * **<esc>i
+
+nnoremap <silent> <F5> :NERDTree<CR>
+
+"conf for tabs, 为标签页进行的配置，通过ctrl h/l切换标签等
+let mapleader = ',' 
+nnoremap <C-l> gt
+nnoremap <C-h> gT
+nnoremap <leader>t : tabe<CR>
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
@@ -513,7 +518,7 @@ let g:tagbar_show_linenumbers = -1             " 显示行号     [使用全局�
 let g:tagbar_autopreview = 1                   " 开启自动预览 [随着光标在标签上的移动，顶部会出现一个实时的预览窗口]
 
 " snipMate            Tab智能补全
-let g:snips_author = 'Ruchee'
+let g:snips_author = 'LeafSummer'
 if g:isWIN
     let g:snippets_dir = $VIM.'/snippets/'
 else
