@@ -273,7 +273,7 @@ set autochdir                " 设定文件浏览器目录为当前目录
 set foldmethod=indent        " 选择代码折叠类型
 set foldlevel=100            " 禁止自动折叠
 set laststatus=2             " 开启状态栏信息
-set cmdheight=2              " 命令行的高度，默认为1，这里设为2
+set cmdheight=1              " 命令行的高度，默认为1，这里设为2
 set autoread                 " 当文件在外部被修改时自动更新该文件
 set nobackup                 " 不生成备份文件
 set noswapfile               " 不生成交换文件
@@ -343,6 +343,9 @@ nnoremap <silent> <F5> :NERDTree<CR>
 let mapleader = ',' 
 nnoremap <C-l> gt
 nnoremap <C-h> gT
+"设置切换Buffer快捷键"
+nnoremap <C-N> :bn<CR>
+nnoremap <C-P> :bp<CR>
 nnoremap <leader>t : tabe<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -571,7 +574,9 @@ let g:indentLine_color_gui  = '#A4E57E'        " 设置GUI线条颜色
 " AirLine             彩色状态栏
 let g:airline_theme           = 'badwolf'      " 设置主题
 let g:airline_powerline_fonts = 0              " 关闭自定义字体
-
+let g:airline#extensions#tabline#enabled = 1   "automatically displays all buffers when there's only one tab open
+let g:airline#extensions#whitespace#enabled = 0 "enable/disable detection of whitespace errors
+let g:airline#extensions#tabline#buffer_nr_show = 1 "configure whether buffer numbers should be shown
 " Promptline          终端辅助工具
 let g:promptline_powerline_symbols = 0         " 关闭特殊符号
 let g:promptline_preset = {
