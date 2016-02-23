@@ -273,7 +273,7 @@ set autochdir                " 设定文件浏览器目录为当前目录
 set foldmethod=indent        " 选择代码折叠类型
 set foldlevel=100            " 禁止自动折叠
 set laststatus=2             " 开启状态栏信息
-set cmdheight=2              " 命令行的高度，默认为1，这里设为2
+set cmdheight=1              " 命令行的高度，默认为1，这里设为2
 set autoread                 " 当文件在外部被修改时自动更新该文件
 set nobackup                 " 不生成备份文件
 set noswapfile               " 不生成交换文件
@@ -337,12 +337,15 @@ endif
 "au FileType scheme,racket,newlisp,lisp,clojure :inoremap ` `
 "au FileType scheme,racket,newlisp,lisp,clojure :inoremap * **<esc>i
 
-nnoremap <silent> <F5> :NERDTree<CR>
+map <F5> :NERDTreeToggle<CR>
 
 "conf for tabs, 为标签页进行的配置，通过ctrl h/l切换标签等
 let mapleader = ',' 
 nnoremap <C-l> gt
 nnoremap <C-h> gT
+"设置切换Buffer快捷键"
+nnoremap <C-N> :bn<CR>
+nnoremap <C-P> :bp<CR>
 nnoremap <leader>t : tabe<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -558,6 +561,8 @@ let g:snipMate.scope_aliases['xhtml']           = 'html'
 
 " NERDTree            树形文件浏览器
 let g:NERDTreeShowHidden = 1                   " 显示隐藏文件
+let NERDTreeWinSize=20
+let NERDTreeChDirMode=1
 
 " NERD_commenter      注释处理插件
 let NERDSpaceDelims = 1                        " 自动添加前置空格
@@ -571,7 +576,9 @@ let g:indentLine_color_gui  = '#A4E57E'        " 设置GUI线条颜色
 " AirLine             彩色状态栏
 let g:airline_theme           = 'badwolf'      " 设置主题
 let g:airline_powerline_fonts = 0              " 关闭自定义字体
-
+let g:airline#extensions#tabline#enabled = 1   "automatically displays all buffers when there's only one tab open
+let g:airline#extensions#whitespace#enabled = 0 "enable/disable detection of whitespace errors
+let g:airline#extensions#tabline#buffer_nr_show = 1 "configure whether buffer numbers should be shown
 " Promptline          终端辅助工具
 let g:promptline_powerline_symbols = 0         " 关闭特殊符号
 let g:promptline_preset = {
@@ -724,15 +731,15 @@ vmap <leader>rm <esc>:%s/<c-v><c-m>//g<cr>
 " \rt                 一键替换全部Tab为空格
 func! RemoveTabs()
     if &shiftwidth == 2
-        exec '%s/	/  /g'
+        exec '%s/   /  /g'
     elseif &shiftwidth == 4
-        exec '%s/	/    /g'
+        exec '%s/   /    /g'
     elseif &shiftwidth == 6
-        exec '%s/	/      /g'
+        exec '%s/   /      /g'
     elseif &shiftwidth == 8
-        exec '%s/	/        /g'
+        exec '%s/   /        /g'
     else
-        exec '%s/	/ /g'
+        exec '%s/   / /g'
     end
 endfunc
 
