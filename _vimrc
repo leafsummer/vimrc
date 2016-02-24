@@ -308,8 +308,8 @@ if g:isGUI
     if g:isWIN
         au GUIEnter * simalt ~x
     endif
-    "winpos 20 20            " 指定窗口出现的位置，坐标原点在屏幕左上角
-    "set lines=20 columns=120 " 指定窗口大小，lines为高度，columns为宽度
+    winpos 20 20            " 指定窗口出现的位置，坐标原点在屏幕左上角
+    set lines=40 columns=130 " 指定窗口大小，lines为高度，columns为宽度
     set guioptions+=c        " 使用字符提示框
     set guioptions-=m        " 隐藏菜单栏
     set guioptions-=T        " 隐藏工具栏
@@ -642,7 +642,12 @@ endif
 
 " ======= 自定义快捷键 ======= "
 
-" Ctrl + ]            多选择跳转
+nmap w= :resize +3<cr>
+nmap w- :resize -3<cr>
+nmap w, :vertical resize -3<cr>
+nmap w. :vertical resize +3<cr>
+
+
 nmap <c-]> g<c-]>
 vmap <c-]> g<c-]>
 
