@@ -598,9 +598,9 @@ let g:gitgutter_sign_removed          = '-'    " 自定义删除指示符
 let g:gitgutter_sign_modified_removed = '->'   " 自定义既修改又删除指示符
 
 " Syntastic           语法检查
-let g:syntastic_check_on_open = 1              " 默认开启
+let g:syntastic_check_on_open = 0              " 默认开启
 let g:syntastic_mode_map      = {
-            \'mode': 'active',
+            \'mode': 'passive',
             \'passive_filetypes': ['groovy', 'kotlin', 'scala', 'clojure', 'lisp', 'eruby', 'slim', 'jade', 'scss', 'less', 'css', 'html', 'xhtml']
             \}                                 " 指定不需要开启检查的语言
 " 自定义编译器和编译参数
@@ -619,7 +619,7 @@ let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_python_python_exec = 'python3'
 " 自定义指定后缀的文件不开启语法检查
-au BufRead,BufNewFile *.min.js,*.jsx,*.html exec ':SyntasticToggleMode'
+"au BufRead,BufNewFile *.min.js,*.jsx,*.html exec ':SyntasticToggleMode'
 
 " javascript-libraries-syntax                    指定需要高亮的JS库
 let g:used_javascript_libs = 'jquery,requirejs,underscore,backbone,angularjs,angularui,angularuirouter,react,flux,handlebars'
@@ -792,6 +792,11 @@ nmap <leader>css <esc>:se ft=css<cr>
 imap <leader>html <esc>:se ft=html<cr>li
 nmap <leader>html <esc>:se ft=html<cr>
 
+"开启语法检测
+nnoremap <leader>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
+" 复制到剪切板
+vmap <c-c> "+y
 
 " ======= 编译 && 运行 && 模板 ======= "
 
