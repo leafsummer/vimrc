@@ -670,6 +670,10 @@ imap <c-k> <esc><up>A
 imap <c-l> <esc>A
 " map <c-l> <c-w><c-l>
 
+" 光标移到行尾或者行首
+inoremap <C-e> <END>
+inoremap <C-a> <HOME>
+
 " Alt  + H            光标左移一格
 imap <m-h> <left>
 
