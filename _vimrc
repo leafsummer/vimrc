@@ -324,18 +324,18 @@ endif
 
 " ======= 引号 && 括号自动匹配 ======= "
 
-":inoremap ( ()<esc>i
-":inoremap ) <c-r>=ClosePair(')')<cr>
-":inoremap { {}<esc>i
-":inoremap } <c-r>=ClosePair('}')<cr>
-":inoremap [ []<esc>i
-":inoremap ] <c-r>=ClosePair(']')<cr>
-":inoremap " ""<esc>i
-":inoremap ' ''<esc>i
-":inoremap ` ``<esc>i
-"au FileType scheme,racket,newlisp,lisp,clojure :inoremap ' '
-"au FileType scheme,racket,newlisp,lisp,clojure :inoremap ` `
-"au FileType scheme,racket,newlisp,lisp,clojure :inoremap * **<esc>i
+:inoremap ( ()<esc>i
+:inoremap ) <c-r>=ClosePair(')')<cr>
+:inoremap { {}<esc>i
+:inoremap } <c-r>=ClosePair('}')<cr>
+:inoremap [ []<esc>i
+:inoremap ] <c-r>=ClosePair(']')<cr>
+:inoremap " ""<esc>i
+:inoremap ' ''<esc>i
+:inoremap ` ``<esc>i
+au FileType scheme,racket,newlisp,lisp,clojure :inoremap ' '
+au FileType scheme,racket,newlisp,lisp,clojure :inoremap ` `
+au FileType scheme,racket,newlisp,lisp,clojure :inoremap * **<esc>i
 
 map <F5> :NERDTreeToggle<CR>
 
@@ -344,8 +344,8 @@ let mapleader = ','
 nnoremap <C-l> gt
 nnoremap <C-h> gT
 "设置切换Buffer快捷键"
-nnoremap <C-N> :bn<CR>
-nnoremap <C-P> :bp<CR>
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
 nnoremap <leader>t : tabe<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -353,7 +353,7 @@ set showmode
 
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
-        return '\<Right>'
+        return ''
     else
         return a:char
     endif
@@ -587,6 +587,17 @@ let g:promptline_preset = {
             \'c'    : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
             \'warn' : [ promptline#slices#last_exit_code() ]
             \}                                 " 自定义命令行显示
+
+" 配置 EasyMotion
+let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
+
 
 " GitGutter           Git辅助插件
 let g:gitgutter_enabled               = 0      " 默认不开启
