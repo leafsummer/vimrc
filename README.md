@@ -1,4 +1,4 @@
-![Vim Ruchee](https://raw.github.com/ruchee/mysite/master/public/images/vim.png "Vim Ruchee")
+![Vim Ruchee](https://raw.github.com/ruchee/vimrc/master/macvim.jpg "Vim Ruchee")
 
 ----
 
